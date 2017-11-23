@@ -5,16 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+puts "cleaning seeds..."
+Dose.destroy_all
+Ingredient.destroy_all
+Cocktail.destroy_all
 
+puts "creating seeds..."
+lemon = Ingredient.create(name: "lemon")
+ice = Ingredient.create(name: "ice")
+mint = Ingredient.create(name: "mint leaves")
 
-Ingredient.create(name: "lemon"),
-Ingredient.create(name: "ice"),
-Ingredient.create(name: "mint leaves"),
+mojito = Cocktail.create(name: "Mojito")
+spritz = Cocktail.create(name: "Spritz")
+mai_tai = Cocktail.create(name: "Mai tai")
 
-Cocktail.create(name: "Mojito"),
-Cocktail.create(name: "Spritz"),
-Cocktail.create(name: "Mai tai"),
-
-Dose.create(description: “6cl”, ingredient_id: 1, cocktail_id: 1)
-Dose.create(description: “10cl”, ingredient_id: 2, cocktail_id: 1)
-Dose.create(description: “5cl”, ingredient_id: 3, cocktail_id: 1)
+puts "Seeds done."
+Dose.create(description: "6cl", ingredient: lemon, cocktail: mojito)
+Dose.create(description: "10cl", ingredient: mint, cocktail: spritz)
+Dose.create(description: "5cl", ingredient: mint, cocktail: mai_tai)
